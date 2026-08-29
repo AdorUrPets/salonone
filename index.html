@@ -6,10 +6,10 @@
   <title>Salon One — Hair, Beauty & Bridal Styling, Tauranga</title>
   <meta name="description" content="Salon One is Fraser Cove, Tauranga's destination for hairdressing, beauty therapy, and bridal styling — family-owned, using eco-friendly products in a warm, welcoming space." />
 
-  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <!-- Google Fonts: Playfair Display, Bodoni Moda, Cormorant Garamond, Plus Jakarta Sans & DM Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ==========================================================================
@@ -31,14 +31,21 @@
       --accent-gold-primary: #D4AF37;
       --accent-gold-hover: #F0D479;
       --accent-gold-subtle: rgba(229, 193, 88, 0.12);
+      --accent-rose: #D5B7A5;
+      --accent-warm-sand: #F5F0EA;
+      --hud-panel-bg: rgba(24, 21, 20, 0.72);
+      --hud-panel-border: rgba(229, 193, 88, 0.22);
+      --hud-inner-border: rgba(255, 255, 255, 0.08);
       
       --border-glass: rgba(255, 255, 255, 0.10);
       --border-glass-subtle: rgba(255, 255, 255, 0.06);
       --border-gold: rgba(229, 193, 88, 0.35);
       --border-focus: rgba(229, 193, 88, 0.6);
 
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-display: 'Playfair Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
+      --font-serif: 'Playfair Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'DM Mono', 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
 
       --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1095,134 +1102,746 @@
     }
 
     /* ==========================================================================
-       SERVICES & PRICING
+       SALON SERVICES SECTION — BESPOKE LUXURY EDITORIAL + SUBTLE HUD
        ========================================================================== */
-    .services-header {
-      text-align: center;
-      max-width: 640px;
-      margin-inline: auto;
-      margin-bottom: 4.5rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: var(--bg-glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-glass);
-      border-radius: var(--radius-md);
-      padding: 2.75rem 2.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .services-section {
       position: relative;
-      transition: all 0.4s var(--ease-editorial);
-      color: var(--text-sand);
+      padding-top: 4rem;
+      padding-bottom: 7.5rem;
+      z-index: 2;
+      background: rgba(10, 10, 11, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
     }
 
-    .service-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
-      border-color: var(--border-gold);
-      background: var(--bg-glass-hover);
-    }
-
-    .service-card:hover::after {
-      opacity: 1;
-    }
-
-    .service-top {
+    .services-editorial-header {
+      position: relative;
+      z-index: 25;
+      margin-bottom: 0;
+      padding-block: 1.25rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.25rem;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
-      padding-bottom: 1rem;
-      gap: 1rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
 
-    .service-title {
-      font-size: 1.5rem;
-      font-weight: 400;
-      font-family: var(--font-serif);
-      color: var(--text-white);
+    .services-editorial-header-left {
+      max-width: 680px;
     }
 
-    .service-price {
-      font-family: var(--font-sans);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--accent-gold);
-      white-space: nowrap;
-    }
-
-    .service-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .service-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
-    .service-features li {
-      font-size: 0.88rem;
-      color: var(--text-sand);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .service-features li svg {
-      width: 14px;
-      height: 14px;
-      color: var(--accent-gold);
-      flex-shrink: 0;
-    }
-
-    .service-footer {
-      margin-top: auto;
-    }
-
-    .service-link {
-      font-size: 0.8rem;
+    .editorial-hud-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-weight: 600;
-      color: var(--accent-gold);
+      color: #C7A76D;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .editorial-hud-tag::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background-color: #C7A76D;
+    }
+
+    .services-editorial-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.45),
+        0 0 14px rgba(255, 255, 255, 0.2);
+      margin: 0;
+    }
+
+    .services-editorial-header-right {
+      max-width: 380px;
+      text-align: right;
+    }
+
+    .services-editorial-lead {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #FFFFFF;
+      margin: 0 0 0.75rem 0;
+      font-weight: 400;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .services-editorial-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.85;
+      text-shadow: none;
+    }
+
+    /* Mobile Discipline Navigation Bar */
+    .editorial-mobile-nav {
+      display: none;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .editorial-mobile-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .editorial-mobile-nav-btn {
+      flex-shrink: 0;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: gap 0.3s ease;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 0;
+      color: #FFFFFF;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .service-link:hover {
-      color: var(--text-white);
-      gap: 0.8rem;
+    .editorial-mobile-nav-btn.active {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+      color: #000000;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Asymmetrical Editorial Grid (34% Left Directory, 66% Right Spread) */
+    .editorial-services-grid {
+      display: grid;
+      grid-template-columns: 34% 66%;
+      gap: 3.5rem;
+      align-items: start;
+      padding-top: 2rem;
+      position: relative;
+    }
+
+    /* Left Nav: Stationary Architectural Directory */
+    .editorial-directory {
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .editorial-directory-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 0.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .editorial-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      color: #FFFFFF;
+      transition: all 0.35s var(--ease-editorial);
+      position: relative;
+    }
+
+    .editorial-nav-item-left {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+    }
+
+    .editorial-nav-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .editorial-nav-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .editorial-nav-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(255, 255, 255, 0.15);
+      transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .editorial-nav-sub {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.75;
+      transition: color 0.3s ease;
+    }
+
+    .editorial-nav-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all 0.35s var(--ease-editorial);
+    }
+
+    .editorial-nav-indicator-line {
+      width: 16px;
+      height: 1.5px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    }
+
+    .editorial-nav-indicator svg {
+      width: 12px;
+      height: 12px;
+      color: #FFFFFF;
+    }
+
+    .editorial-nav-item:hover {
+      padding-left: 0.85rem;
+    }
+
+    .editorial-nav-item:hover .editorial-nav-num {
+      color: #000000;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+    }
+
+    .editorial-nav-item:hover .editorial-nav-name {
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.55),
+        0 0 15px rgba(255, 255, 255, 0.25);
+    }
+
+    .editorial-nav-item.active {
+      padding-left: 1rem;
+      border-bottom-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .editorial-nav-item.active .editorial-nav-num {
+      color: #000000;
+      font-weight: 800;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    }
+
+    .editorial-nav-item.active .editorial-nav-name {
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      font-size: 1.38rem;
+      font-weight: 800;
+      text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 18px rgba(255, 255, 255, 0.25);
+    }
+
+    .editorial-nav-item.active .editorial-nav-sub {
+      color: #FFFFFF;
+    }
+
+    .editorial-nav-item.active .editorial-nav-indicator {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Right Showcase: Editorial Magazine Spread with Clean Boundary Disappearance */
+    .editorial-display {
+      display: flex;
+      flex-direction: column;
+      max-height: 600px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding-right: 1.25rem;
+      padding-bottom: 2rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+      contain: paint;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .editorial-display::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .editorial-display::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .editorial-display::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+
+    .editorial-display::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Hero Typography + Portrait Composition */
+    .editorial-hero-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2.5rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+    }
+
+    .editorial-hero-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .editorial-discipline-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .editorial-service-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4vw, 3.6rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.45),
+        0 0 14px rgba(255, 255, 255, 0.2);
+      margin-bottom: 1.25rem;
+    }
+
+    .editorial-service-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #FFFFFF;
+      font-weight: 400;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+      max-width: 480px;
+      margin-bottom: 1.75rem;
+    }
+
+    .editorial-metrics-inline {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .editorial-metric-unit {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .editorial-metric-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .editorial-metric-data {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      letter-spacing: -0.01em;
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(255, 255, 255, 0.15);
+    }
+
+    .editorial-metric-data.gold {
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.45),
+        0 0 14px rgba(255, 255, 255, 0.18);
+    }
+
+    /* Architectural Image Frame with Fine Crosshairs */
+    .editorial-visual-frame {
+      position: relative;
+      height: 380px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .editorial-visual-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease-editorial), opacity 0.5s ease;
+      filter: saturate(0.92) contrast(1.05);
+      display: block;
+    }
+
+    .editorial-visual-frame:hover .editorial-visual-img {
+      transform: scale(1.04);
+    }
+
+    .editorial-frame-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(17, 18, 17, 0.1) 0%, rgba(17, 18, 17, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    .editorial-crosshair {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .editorial-crosshair-tl {
+      top: 6px;
+      left: 6px;
+      border-top: 1px solid #FFFFFF;
+      border-left: 1px solid #FFFFFF;
+    }
+
+    .editorial-crosshair-br {
+      bottom: 6px;
+      right: 6px;
+      border-bottom: 1px solid #FFFFFF;
+      border-right: 1px solid #FFFFFF;
+    }
+
+    /* Haute Treatment Menu (Hairline Rows) */
+    .editorial-treatments-section {
+      margin-top: 1rem;
+    }
+
+    .editorial-treatments-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.9;
+      margin-bottom: 0;
+    }
+
+    .editorial-treatments-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .editorial-treatment-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.35rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s ease;
+      gap: 1.5rem;
+    }
+
+    .editorial-treatment-line:hover {
+      padding-left: 0.5rem;
+      border-bottom-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .editorial-treatment-name-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .editorial-treatment-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      letter-spacing: -0.01em;
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.4),
+        0 0 10px rgba(255, 255, 255, 0.15);
+      transition: text-shadow 0.3s ease;
+    }
+
+    .editorial-treatment-line:hover .editorial-treatment-name {
+      text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.6),
+        0 0 15px rgba(255, 255, 255, 0.25);
+    }
+
+    .editorial-treatment-meta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .editorial-treatment-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-shrink: 0;
+    }
+
+    .editorial-treatment-cost {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(255, 255, 255, 0.15);
+    }
+
+    .editorial-book-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding-bottom: 2px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .editorial-book-link:hover {
+      color: #000000;
+      -webkit-text-fill-color: #000000;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+      border-bottom-color: #FFFFFF;
+      gap: 0.75rem;
+    }
+
+    .editorial-book-link svg {
+      width: 11px;
+      height: 11px;
+      color: #FFFFFF;
+      transition: transform 0.3s ease;
+    }
+
+    .editorial-book-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Bottom Editorial Footer / Actions */
+    .editorial-footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .editorial-concierge-note {
+      font-size: 0.85rem;
+      color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 300;
+    }
+
+    .editorial-concierge-note svg {
+      width: 15px;
+      height: 15px;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .editorial-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-editorial-primary {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #000000;
+      background-color: #FFFFFF;
+      padding: 0.85rem 1.85rem;
+      border: 1px solid #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+      transition: all 0.35s var(--ease-editorial);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-editorial-primary:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .btn-editorial-secondary {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 0.85rem 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-editorial-secondary:hover {
+      border-color: #FFFFFF;
+      color: #000000;
+      background: #FFFFFF;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+    }
+
+    @media (max-width: 1024px) {
+      .editorial-services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .editorial-directory {
+        display: none;
+      }
+
+      .editorial-mobile-nav {
+        display: flex;
+        position: sticky;
+        top: 9.5rem;
+        z-index: 20;
+      }
+
+      .services-editorial-header-right {
+        text-align: left;
+      }
+
+      .editorial-display {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .editorial-hero-row {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .editorial-visual-frame {
+        height: 260px;
+      }
+
+      .editorial-treatment-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .editorial-treatment-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .editorial-footer-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-editorial-primary, .btn-editorial-secondary {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* ==========================================================================
@@ -2008,121 +2627,235 @@
     </section>
 
     <!-- ==========================================================================
-         3. SERVICES & PRICING
+         3. SALON SERVICES EDITORIAL SECTION
          ========================================================================== -->
-    <section class="section-spacing" id="services">
+    <section class="services-section" id="services">
       <div class="container">
 
-        <div class="services-header reveal-on-scroll">
-          <div class="eyebrow">Our Services</div>
-          <h2 class="headline-lg">Hairdressing & Beauty Therapy</h2>
-          <p class="lead-text" style="margin-top: 1rem;">
-            From everyday cuts and colour to considered beauty therapies, our full price guide is available in-salon or on request — just ask our team.
-          </p>
+        <!-- Section Header: Editorial & Technical Typography -->
+        <div class="services-editorial-header">
+          <div class="services-editorial-header-left">
+            <h2 class="services-editorial-title">OUR SERVICES</h2>
+          </div>
         </div>
 
-        <div class="services-grid">
+        <!-- Mobile Horizontal Discipline Navigation -->
+        <div class="editorial-mobile-nav" id="hudMobilePills" aria-label="Select Service Discipline">
+          <button type="button" class="editorial-mobile-nav-btn active" data-service-idx="0">01 STYLING</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="1">02 COLOUR</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="2">03 CUT &amp; FINISH</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="3">04 FACIALS</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="4">05 NAILS</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="5">06 BROWS &amp; LASHES</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="6">07 MAKEUP</button>
+          <button type="button" class="editorial-mobile-nav-btn" data-service-idx="7">08 BRIDAL</button>
+        </div>
 
-          <!-- Hairdressing -->
-          <div class="service-card reveal-on-scroll delay-100">
-            <div>
-              <div class="service-top">
-                <h3 class="service-title">Hairdressing</h3>
-                <span class="service-price">Price Guide</span>
+        <!-- Asymmetrical Editorial Layout (34% Directory / 66% Spread) -->
+        <div class="editorial-services-grid reveal-on-scroll">
+
+          <!-- Left: Architectural Directory Menu -->
+          <div class="editorial-directory" id="hudMenuCol" role="tablist" aria-label="Salon Service Directory">
+            <!-- 01 HAIR STYLING -->
+            <button type="button" class="editorial-nav-item active" data-service-idx="0" role="tab" aria-selected="true">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">01</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Hair Styling</span>
+                </div>
               </div>
-              <p class="service-desc">
-                General hairdressing built around your hair's condition and lifestyle — from precision cuts to full colour transformations.
-              </p>
-              <ul class="service-features">
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Cuts, grey blending & foils
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Toner & hair treatments
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Blow wave packages
-                </li>
-              </ul>
-            </div>
-            <div class="service-footer">
-              <a href="#booking" class="service-link">
-                Book This Service
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 02 HAIR COLOUR -->
+            <button type="button" class="editorial-nav-item" data-service-idx="1" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">02</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Hair Colour</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 03 CUT & FINISH -->
+            <button type="button" class="editorial-nav-item" data-service-idx="2" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">03</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Cut &amp; Finish</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 04 FACIALS -->
+            <button type="button" class="editorial-nav-item" data-service-idx="3" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">04</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Facials &amp; Glow</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 05 NAILS -->
+            <button type="button" class="editorial-nav-item" data-service-idx="4" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">05</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Nails &amp; Pedicures</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 06 BROWS & LASHES -->
+            <button type="button" class="editorial-nav-item" data-service-idx="5" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">06</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Brows &amp; Lashes</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 07 MAKEUP -->
+            <button type="button" class="editorial-nav-item" data-service-idx="6" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">07</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Makeup Artistry</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
+
+            <!-- 08 BRIDAL -->
+            <button type="button" class="editorial-nav-item" data-service-idx="7" role="tab" aria-selected="false">
+              <div class="editorial-nav-item-left">
+                <span class="editorial-nav-num">08</span>
+                <div class="editorial-nav-text">
+                  <span class="editorial-nav-name">Bridal Atelier</span>
+                </div>
+              </div>
+              <div class="editorial-nav-indicator">
+                <span class="editorial-nav-indicator-line"></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </button>
           </div>
 
-          <!-- Beauty Therapy (Featured) -->
-          <div class="service-card reveal-on-scroll delay-200" style="border-color: rgba(197, 160, 89, 0.45); background: #FFFFFF;">
-            <div>
-              <div class="service-top">
-                <h3 class="service-title">Beauty Therapy</h3>
-                <span class="service-price">Price Guide</span>
-              </div>
-              <p class="service-desc">
-                A full beauty menu with bundled packages, so you can pair treatments and save on your visit.
-              </p>
-              <ul class="service-features">
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Eyes & brows
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Facials & hair removal
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Nails & pedicures
-                </li>
-              </ul>
-            </div>
-            <div class="service-footer">
-              <a href="#booking" class="service-link">
-                Book This Service
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
+          <!-- Right: Editorial Magazine Spread -->
+          <div class="editorial-display" id="hudMainPanel">
 
-          <!-- Weddings & Occasions -->
-          <div class="service-card reveal-on-scroll delay-300" id="weddings">
-            <div>
-              <div class="service-top">
-                <h3 class="service-title">Weddings & Occasions</h3>
-                <span class="service-price">By Consultation</span>
+            <!-- Hero Layout: Headline & Asymmetrical Image Composition -->
+            <div class="editorial-hero-row">
+              <div class="editorial-hero-text">
+                <h3 class="editorial-service-heading" id="hudActiveTitle">Hair Styling</h3>
+                <p class="editorial-service-desc" id="hudActiveDesc">
+                  Signature styling tailored to your hair type, texture and personal look.
+                </p>
+
+                <div class="editorial-metrics-inline">
+                  <div class="editorial-metric-unit">
+                    <span class="editorial-metric-kicker">DURATION</span>
+                    <span class="editorial-metric-data" id="metricDuration">60–90 MIN</span>
+                  </div>
+                  <div class="editorial-metric-unit">
+                    <span class="editorial-metric-kicker">INVESTMENT</span>
+                    <span class="editorial-metric-data gold" id="metricPrice">$85</span>
+                  </div>
+                  <div class="editorial-metric-unit">
+                    <span class="editorial-metric-kicker">AVAILABILITY</span>
+                    <span class="editorial-metric-data" id="metricAvailability">AVAILABLE</span>
+                  </div>
+                </div>
               </div>
-              <p class="service-desc">
-                Bridal hair and makeup, and styling for balls and special occasions — with a wedding-day checklist to help you plan ahead.
-              </p>
-              <ul class="service-features">
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Wedding hair & makeup trials
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Ball & formal event styling
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  Bridal party bookings
-                </li>
-              </ul>
+
+              <!-- High-Craft Architectural Visual Frame -->
+              <div class="editorial-visual-frame">
+                <div class="editorial-crosshair editorial-crosshair-tl"></div>
+                <div class="editorial-crosshair editorial-crosshair-br"></div>
+                <img
+                  id="hudVisualImg"
+                  class="editorial-visual-img"
+                  src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&amp;w=1200&amp;auto=format&amp;fit=crop"
+                  alt="Haute Salon Styling Discipline"
+                  loading="lazy"
+                />
+                <div class="editorial-frame-overlay"></div>
+              </div>
             </div>
-            <div class="service-footer">
-              <a href="#booking" class="service-link">
-                Book This Service
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
+
+            <!-- Treatment Menu List (Hairline Separators) -->
+            <div class="editorial-treatments-section">
+              <div class="editorial-treatments-head">
+                <span>TREATMENT MENU &amp; CRAFT</span>
+                <span>DURATION / INVESTMENT / BOOK</span>
+              </div>
+              <div class="editorial-treatments-list" id="hudTreatmentList">
+                <!-- Populated dynamically by script -->
+                <div class="editorial-treatment-line">
+                  <div class="editorial-treatment-name-wrap">
+                    <span class="editorial-treatment-name">Blow Wave</span>
+                    <span class="editorial-treatment-meta">45 MIN · SIGNATURE SMOOTHING</span>
+                  </div>
+                  <div class="editorial-treatment-right">
+                    <span class="editorial-treatment-cost">$65</span>
+                    <a href="#booking" class="editorial-book-link" data-treatment="Blow Wave">
+                      Reserve
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Bottom Editorial Actions & Concierge Note -->
+            <div class="editorial-footer-bar">
+              <div class="editorial-concierge-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Bespoke consultation and luxury refreshment ritual included with every service</span>
+              </div>
+              <div class="editorial-actions-group">
+                <a href="#booking" class="btn-editorial-primary" id="hudMainBookBtn">
+                  RESERVE APPOINTMENT
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="#booking" class="btn-editorial-secondary" id="hudPriceListBtn">
+                  EXPLORE FULL ATELIER MENU
+                </a>
+              </div>
+            </div>
+
           </div>
 
         </div>
+
       </div>
     </section>
 
@@ -3153,6 +3886,288 @@
 
         updateProductScroll();
         requestAnimationFrame(syncVideoFrame);
+      })();
+
+      /* -- Salon Services HUD Interactive Controller ------------------- */
+      (function initSalonServicesHUD() {
+        var servicesData = [
+          {
+            id: '01',
+            catCode: 'HAIR / STYLING',
+            categoryTag: 'STYLING & TEXTURE',
+            title: 'Hair Styling',
+            subtitle: 'SERVICE 01 — SIGNATURE ATELIER',
+            desc: 'Signature styling tailored to your hair type, texture and personal look. From effortless everyday waves to red-carpet finishes.',
+            duration: '60–90 MIN',
+            priceFrom: '$85',
+            availability: 'AVAILABLE',
+            booking: 'RECOMMENDED',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Blow Wave', dur: '45 MIN', price: '$65' },
+              { name: 'Event Styling', dur: '60 MIN', price: '$95' },
+              { name: 'Curls & Waves', dur: '45 MIN', price: '$75' },
+              { name: 'Upstyle Atelier', dur: '75 MIN', price: '$120' }
+            ]
+          },
+          {
+            id: '02',
+            catCode: 'HAIR / COLOUR',
+            categoryTag: 'COLOUR & BALAYAGE',
+            title: 'Hair Colour',
+            subtitle: 'SERVICE 02 — DIMENSIONAL ARTISTRY',
+            desc: 'Dimensional balayage, bespoke foil artistry, and high-shine glossing designed for luminous depth, natural growth, and vibrant longevity.',
+            duration: '90–150 MIN',
+            priceFrom: '$140',
+            availability: 'AVAILABLE',
+            booking: 'ESSENTIAL',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Half Head Foils', dur: '90 MIN', price: '$160' },
+              { name: 'Full Balayage Atelier', dur: '150 MIN', price: '$245' },
+              { name: 'Global Colour & Gloss', dur: '75 MIN', price: '$140' },
+              { name: 'Toner & Bond Repair', dur: '45 MIN', price: '$85' }
+            ]
+          },
+          {
+            id: '03',
+            catCode: 'HAIR / CUT',
+            categoryTag: 'PRECISION & SHAPE',
+            title: 'Cut & Finish',
+            subtitle: 'SERVICE 03 — ARCHITECTURAL CUTTING',
+            desc: 'Architectural precision cutting crafted to complement your facial contours, hair density, and effortless daily routine.',
+            duration: '45–60 MIN',
+            priceFrom: '$85',
+            availability: 'AVAILABLE',
+            booking: 'RECOMMENDED',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Senior Stylist Cut & Blow', dur: '60 MIN', price: '$95' },
+              { name: 'Re-Style & Sculpt', dur: '75 MIN', price: '$115' },
+              { name: 'Express Dry Cut', dur: '30 MIN', price: '$65' },
+              { name: 'Luxury Botanical Treatment & Cut', dur: '75 MIN', price: '$135' }
+            ]
+          },
+          {
+            id: '04',
+            catCode: 'SKIN / RADIANCE',
+            categoryTag: 'SKINCARE & RADIANCE',
+            title: 'Facials & Glow',
+            subtitle: 'SERVICE 04 — CELLULAR BOTANICALS',
+            desc: 'Clinical-grade botanical facials and lymphatic drainage therapies engineered to restore cellular luminosity and moisture equilibrium.',
+            duration: '60–75 MIN',
+            priceFrom: '$110',
+            availability: 'AVAILABLE',
+            booking: 'RECOMMENDED',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Cellular Radiance Glow', dur: '60 MIN', price: '$130' },
+              { name: 'Deep Hydra-Infusion', dur: '75 MIN', price: '$165' },
+              { name: 'Enzyme Peel & Sculpt', dur: '45 MIN', price: '$110' },
+              { name: 'Luxury Collagen Boost', dur: '90 MIN', price: '$195' }
+            ]
+          },
+          {
+            id: '05',
+            catCode: 'NAILS / ATELIER',
+            categoryTag: 'MANICURE & PEDICURE',
+            title: 'Nails & Pedicures',
+            subtitle: 'SERVICE 05 — PRECISION COUTURE',
+            desc: 'Precision Russian dry manicures, BIAB strengthening overlays, and restorative spa pedicures with non-toxic luxury lacquers.',
+            duration: '45–75 MIN',
+            priceFrom: '$55',
+            availability: 'AVAILABLE',
+            booking: 'RECOMMENDED',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'BIAB Builder Gel Manicure', dur: '60 MIN', price: '$85' },
+              { name: 'Luxury Spa Pedicure', dur: '75 MIN', price: '$95' },
+              { name: 'Express Gel Polish', dur: '30 MIN', price: '$55' },
+              { name: 'Artisan Nail Art & Sculpt', dur: '90 MIN', price: '$120' }
+            ]
+          },
+          {
+            id: '06',
+            catCode: 'EYES / DEFINITION',
+            categoryTag: 'DEFINITION & TINT',
+            title: 'Brows & Lashes',
+            subtitle: 'SERVICE 06 — ARCHITECTURE & LIFT',
+            desc: 'High-definition brow architecture, customized hybrid henna tints, and keratin lash lift infusions for effortless natural expression.',
+            duration: '30–60 MIN',
+            priceFrom: '$45',
+            availability: 'AVAILABLE',
+            booking: 'AVAILABLE TODAY',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Keratin Lash Lift & Tint', dur: '60 MIN', price: '$95' },
+              { name: 'Hybrid Brow Sculpt & Tint', dur: '45 MIN', price: '$65' },
+              { name: 'Brow Lamination Atelier', dur: '45 MIN', price: '$80' },
+              { name: 'Signature Eye Combo', dur: '60 MIN', price: '$110' }
+            ]
+          },
+          {
+            id: '07',
+            catCode: 'BEAUTY / EDITORIAL',
+            categoryTag: 'EDITORIAL & OCCASION',
+            title: 'Makeup Artistry',
+            subtitle: 'SERVICE 07 — RED CARPET GLAM',
+            desc: 'Flawless event and red-carpet makeup artistry utilizing skin-first preparation techniques and HD camera-ready formulation.',
+            duration: '60–90 MIN',
+            priceFrom: '$120',
+            availability: 'AVAILABLE',
+            booking: 'RECOMMENDED',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Special Occasion Glam', dur: '60 MIN', price: '$120' },
+              { name: 'Editorial Soft Glam & Lashes', dur: '75 MIN', price: '$145' },
+              { name: 'Express Glow & Contour', dur: '45 MIN', price: '$90' },
+              { name: 'One-on-One Artistry Masterclass', dur: '90 MIN', price: '$180' }
+            ]
+          },
+          {
+            id: '08',
+            catCode: 'BRIDAL / COIFFURE',
+            categoryTag: 'COIFFURE & ATELIER',
+            title: 'Bridal Atelier',
+            subtitle: 'SERVICE 08 — COUTURE BRIDAL',
+            desc: 'Comprehensive wedding-day coiffure, bridal makeup trials, and bespoke entourage packages in our private salon suite or on location.',
+            duration: 'CONSULTATION',
+            priceFrom: '$190',
+            availability: 'LIMITED SLOTS',
+            booking: 'ADVANCE BOOKING',
+            status: 'APPOINTMENTS AVAILABLE',
+            img: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
+            treatments: [
+              { name: 'Bridal Hair & Makeup Trial', dur: '120 MIN', price: '$220' },
+              { name: 'Wedding Day Bride Atelier', dur: '150 MIN', price: '$320' },
+              { name: 'Bridesmaid Styling Package', dur: '75 MIN', price: '$165' },
+              { name: 'Mother of the Bride Finish', dur: '60 MIN', price: '$135' }
+            ]
+          }
+        ];
+
+        var activeIndex = 0;
+        var menuItems = document.querySelectorAll('.editorial-nav-item');
+        var mobilePills = document.querySelectorAll('.editorial-mobile-nav-btn');
+
+        var elTitle = document.getElementById('hudActiveTitle');
+        var elDesc = document.getElementById('hudActiveDesc');
+
+        var elMetricDuration = document.getElementById('metricDuration');
+        var elMetricPrice = document.getElementById('metricPrice');
+        var elMetricAvailability = document.getElementById('metricAvailability');
+
+        var elVisualImg = document.getElementById('hudVisualImg');
+        var elTreatmentList = document.getElementById('hudTreatmentList');
+
+        function bindTreatmentButtons() {
+          var bookBtns = elTreatmentList.querySelectorAll('.editorial-book-link');
+          bookBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+              var treatmentName = btn.getAttribute('data-treatment');
+              var serviceSelect = document.getElementById('serviceSelect');
+              if (serviceSelect && treatmentName) {
+                for (var i = 0; i < serviceSelect.options.length; i++) {
+                  if (serviceSelect.options[i].text.toLowerCase().indexOf(servicesData[activeIndex].title.split(' ')[0].toLowerCase()) !== -1) {
+                    serviceSelect.selectedIndex = i;
+                    break;
+                  }
+                }
+              }
+            });
+          });
+        }
+
+        function renderService(idx) {
+          if (idx < 0 || idx >= servicesData.length) return;
+          activeIndex = idx;
+          var data = servicesData[idx];
+
+          // Reset right pane scroll to top so each discipline opens at top
+          var mainPanel = document.getElementById('hudMainPanel');
+          if (mainPanel) {
+            mainPanel.scrollTop = 0;
+          }
+
+          // Update active states in directory menu
+          menuItems.forEach(function (item, i) {
+            var isActive = (i === idx);
+            item.classList.toggle('active', isActive);
+            item.setAttribute('aria-selected', String(isActive));
+          });
+
+          // Update mobile pill buttons
+          mobilePills.forEach(function (pill, i) {
+            pill.classList.toggle('active', i === idx);
+          });
+
+          // Update headings & descriptions
+          if (elTitle) elTitle.textContent = data.title;
+          if (elDesc) elDesc.textContent = data.desc;
+
+          // Update inline metrics
+          if (elMetricDuration) elMetricDuration.textContent = data.duration;
+          if (elMetricPrice) elMetricPrice.textContent = data.priceFrom;
+          if (elMetricAvailability) elMetricAvailability.textContent = data.availability;
+
+          // Update image with soft crossfade
+          if (elVisualImg && data.img) {
+            elVisualImg.style.opacity = '0.4';
+            elVisualImg.src = data.img;
+            elVisualImg.onload = function () {
+              elVisualImg.style.opacity = '1';
+            };
+          }
+
+          // Render Treatment hairline rows
+          if (elTreatmentList && data.treatments) {
+            var html = '';
+            data.treatments.forEach(function (t) {
+              html += '<div class="editorial-treatment-line">' +
+                '<div class="editorial-treatment-name-wrap">' +
+                  '<span class="editorial-treatment-name">' + t.name + '</span>' +
+                  '<span class="editorial-treatment-meta">' + t.dur + ' · SIGNATURE CRAFT</span>' +
+                '</div>' +
+                '<div class="editorial-treatment-right">' +
+                  '<span class="editorial-treatment-cost">' + t.price + '</span>' +
+                  '<a href="#booking" class="editorial-book-link" data-treatment="' + t.name + '">' +
+                    'Reserve' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>' +
+                  '</a>' +
+                '</div>' +
+              '</div>';
+            });
+            elTreatmentList.innerHTML = html;
+            bindTreatmentButtons();
+          }
+        }
+
+        // Attach listeners for left menu items
+        menuItems.forEach(function (btn, idx) {
+          btn.addEventListener('click', function () {
+            renderService(idx);
+          });
+          btn.addEventListener('mouseenter', function () {
+            renderService(idx);
+          });
+        });
+
+        // Mobile pills
+        mobilePills.forEach(function (pill, idx) {
+          pill.addEventListener('click', function () {
+            renderService(idx);
+          });
+        });
+
+        // Initial render
+        renderService(0);
       })();
 
       /* -- Footer year ------------------------------------------------- */
