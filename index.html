@@ -387,6 +387,51 @@
       background-color: var(--text-white);
     }
 
+    /* ==========================================================================
+       HEADER PRODUCT SECTION THEME (DARK / BLACK COMPONENTS)
+       ========================================================================== */
+    .header.header-product-dark .logo {
+      color: #0A0A0B !important;
+      text-shadow: none !important;
+    }
+
+    .header.header-product-dark .logo span {
+      background-color: #0A0A0B !important;
+    }
+
+    .header.header-product-dark .nav-link {
+      color: #1A191D !important;
+      text-shadow: none !important;
+      font-weight: 500;
+    }
+
+    .header.header-product-dark .nav-link:hover {
+      color: var(--accent-gold) !important;
+    }
+
+    .header.header-product-dark .nav-link::after {
+      background-color: #0A0A0B !important;
+    }
+
+    .header.header-product-dark .btn-primary {
+      background: #0A0A0B !important;
+      color: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.9) !important;
+      box-shadow: 
+        inset 0 2px 3px rgba(255, 255, 255, 0.15),
+        inset 0 -3px 4px rgba(0, 0, 0, 0.5),
+        0 4px 14px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .header.header-product-dark .btn-primary:hover {
+      background: #18171A !important;
+      color: var(--accent-gold) !important;
+    }
+
+    .header.header-product-dark .menu-toggle span {
+      background-color: #0A0A0B !important;
+    }
+
     .nav-container {
       display: flex;
       align-items: center;
@@ -759,7 +804,7 @@
     }
 
     /* ==========================================================================
-       GALLERY SECTION (FULL-WIDTH 16:9 PINNED STACKING IMAGES)
+       GALLERY & PRODUCT STACK (FULL-WIDTH 16:9 PINNED STACKING & OVERLAPPING)
        ========================================================================== */
     .gallery-section {
       position: relative;
@@ -775,10 +820,9 @@
       max-width: 100%;
       margin: 0;
       padding: 0;
-      padding-bottom: clamp(65vh, 85vh, 110vh); /* Ensures gallery card 3 stays locked still at top: 0 while product section overlaps */
       display: flex;
       flex-direction: column;
-      gap: 20vh;
+      gap: 0;
     }
 
     .gallery-stack-card {
@@ -787,7 +831,7 @@
       width: 100vw;
       max-width: 100%;
       margin: 0;
-      margin-bottom: 15vh;
+      margin-bottom: 25vh;
       border-radius: 0;
       background: transparent;
       border: none;
@@ -806,7 +850,7 @@
 
     .gallery-stack-card.card-3 {
       z-index: 13;
-      margin-bottom: 0;
+      margin-bottom: 25vh; /* Locks card 3 still at top:0 while product section glides up and overlaps it */
     }
 
     .gallery-media-frame {
@@ -913,15 +957,14 @@
         padding-bottom: 0;
       }
       .gallery-stack-container {
-        gap: 10vh;
-        padding-bottom: 60vh;
+        gap: 0;
       }
       .gallery-stack-card {
         top: 0;
-        margin-bottom: 10vh;
+        margin-bottom: 15vh;
       }
       .gallery-stack-card.card-3 {
-        margin-bottom: 0;
+        margin-bottom: 15vh;
       }
       .gallery-card-overlay {
         padding: 1.5rem 1.75rem clamp(3.5rem, 9vh, 5.5rem) 1.75rem;
@@ -935,247 +978,74 @@
     }
 
     /* ==========================================================================
-       PRODUCT RITUAL VIDEO SECTION (OVERLAPPING GALLERY SECTION)
+       PRODUCT VIDEO SECTION (FULL-FRAME SCROLL-DRIVEN TIMELINE SCRUB)
        ========================================================================== */
     .product-video-section {
       position: relative;
-      z-index: 20; /* Overlaps pinned gallery card smoothly */
-      background: #0A0A0B;
-      padding-top: clamp(4.5rem, 8vw, 7.5rem);
-      padding-bottom: clamp(4.5rem, 8vw, 7.5rem);
+      z-index: 20; /* Overlaps pinned gallery card 3 smoothly as it rises from below */
+      width: 100vw;
+      max-width: 100%;
+      height: 380vh; /* Generous smooth scrollable timeline scrub track */
+      margin: 0;
+      padding: 0;
+      background: #000000;
       box-shadow: 0 -45px 120px rgba(0, 0, 0, 0.98);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: visible;
+    }
+
+    .product-video-sticky-viewport {
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
       overflow: hidden;
-    }
-
-    .product-video-backdrop-glow {
-      position: absolute;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80vw;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, rgba(229, 193, 88, 0.03) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(40px);
-    }
-
-    .product-container {
-      position: relative;
-      z-index: 1;
-    }
-
-    .product-header {
-      max-width: 760px;
-      margin-bottom: clamp(2.5rem, 5vw, 4rem);
-    }
-
-    .product-lead {
-      margin-top: 1rem;
-      color: var(--text-sand);
-    }
-
-    .product-video-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
-    }
-
-    .product-video-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      max-height: 75vh;
-      background: #050506;
-      overflow: hidden;
-    }
-
-    .product-video-media {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-video-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10, 10, 11, 0.9) 0%,
-        rgba(10, 10, 11, 0.35) 40%,
-        transparent 75%
-      );
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      pointer-events: none;
-    }
-
-    .product-video-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      max-width: 600px;
-    }
-
-    .product-live-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--accent-gold);
-      width: fit-content;
-      margin-bottom: 0.25rem;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-gold);
-      box-shadow: 0 0 10px var(--accent-gold);
-      animation: livePulse 2s infinite ease-in-out;
-    }
-
-    @keyframes livePulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.5; }
-    }
-
-    .product-video-headline {
-      font-family: var(--font-serif);
-      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-      font-weight: 400;
-      color: var(--text-white);
-      letter-spacing: -0.01em;
-    }
-
-    .product-video-sub {
-      font-size: 0.9rem;
-      color: var(--text-sand);
-      letter-spacing: 0.04em;
-    }
-
-    .product-video-controls {
-      pointer-events: auto;
-    }
-
-    .product-sound-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      padding: 0.65rem 1.25rem;
-      border-radius: 9999px;
-    }
-
-    .product-features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      padding: clamp(1.75rem, 3.5vw, 2.75rem);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.01);
-    }
-
-    .product-feature-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .feature-icon-box {
-      width: 42px;
-      height: 42px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #000000;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-gold);
+      margin: 0;
+      padding: 0;
     }
 
-    .feature-title {
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-white);
-      margin-bottom: 0.35rem;
-      letter-spacing: 0.02em;
-    }
-
-    .feature-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    .product-action-bar {
+    .product-headline-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 2rem;
-      padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.75rem, 3.5vw, 2.75rem);
-      background: rgba(255, 255, 255, 0.02);
-      flex-wrap: wrap;
+      justify-content: center;
+      pointer-events: none;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      will-change: transform, opacity;
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      transition: transform 0.08s ease-out, opacity 0.08s ease-out;
     }
 
-    .product-action-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+    .product-headline-img {
+      max-width: min(85vw, 860px);
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.9));
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .product-action-highlight {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-white);
-      letter-spacing: 0.03em;
-    }
-
-    .product-action-sub {
-      font-size: 0.82rem;
-      color: var(--text-sand);
-    }
-
-    .product-action-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 900px) {
-      .product-features-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .product-action-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .product-video-overlay {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.25rem;
-      }
+    .product-scroll-video-el {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: #000000;
     }
 
     /* ==========================================================================
@@ -1955,6 +1825,7 @@
     <div class="container nav-container">
       <ul class="nav-links">
         <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#product" class="nav-link">Product</a></li>
         <li><a href="#services" class="nav-link">Services</a></li>
         <li><a href="#weddings" class="nav-link">Weddings</a></li>
         <li><a href="#shop" class="nav-link">Shop</a></li>
@@ -1975,6 +1846,7 @@
   <!-- Mobile Navigation Drawer -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#gallery" class="nav-link mobile-link">Gallery</a>
+    <a href="#product" class="nav-link mobile-link">Product</a>
     <a href="#services" class="nav-link mobile-link">Services</a>
     <a href="#weddings" class="nav-link mobile-link">Weddings</a>
     <a href="#shop" class="nav-link mobile-link">Shop</a>
@@ -2107,26 +1979,33 @@
             </div>
           </div>
         </div>
+
+        <!-- PRODUCT SECTION (PURE FULL-FRAME SCROLL-DRIVEN VIDEO OVERLAPPING CARD 3) -->
+        <div class="product-video-section" id="product" aria-label="Product Showcase Video">
+          <div class="product-video-sticky-viewport">
+            <div class="product-headline-overlay" id="productHeadlineOverlay">
+              <img
+                src="https://res.cloudinary.com/cskamhz5/image/upload/v1788009298/ChatGPT_Image_Aug_30_2026_01_14_44_AM.png"
+                alt="Product Headline Collection"
+                class="product-headline-img"
+                loading="eager"
+              />
+            </div>
+            <video
+              id="productScrollVideo"
+              class="product-scroll-video-el"
+              src="https://res.cloudinary.com/cskamhz5/video/upload/v1788007410/product.mp4"
+              playsinline
+              webkit-playsinline
+              muted
+              preload="auto"
+              tabindex="-1"
+              aria-hidden="true"
+            ></video>
+          </div>
+        </div>
       </div>
     </section>
-
-    <!-- Continuous Brand Marquee -->
-    <div class="marquee-wrapper" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-item"><span>Hairdressing & Grey Blending</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Foils & Toner</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Eyes & Brows</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Facials & Hair Removal</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Nails & Pedicures</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Wedding & Ball Styling</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Hairdressing & Grey Blending</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Foils & Toner</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Eyes & Brows</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Facials & Hair Removal</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Nails & Pedicures</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Wedding & Ball Styling</span><span class="marquee-dot"></span></div>
-      </div>
-    </div>
 
     <!-- ==========================================================================
          3. SERVICES & PRICING
@@ -2534,6 +2413,7 @@
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-list">
             <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#product">Product</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#shop">Shop & Vouchers</a></li>
             <li><a href="#philosophy">About</a></li>
@@ -2568,6 +2448,20 @@
   <script>
     (function () {
       'use strict';
+
+      // Always restore scroll position strictly to the top on page refresh/reload
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      window.addEventListener('beforeunload', function () {
+        window.scrollTo(0, 0);
+      });
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          window.scrollTo(0, 0);
+        }, 0);
+      });
 
       /* -- 100% Butter-Smooth High-Fidelity 60-120FPS Canvas Image Sequence Engine -- */
       var canvas = document.getElementById('heroScrollCanvas');
@@ -2696,27 +2590,32 @@
           }
         }
 
+        var productEl = document.getElementById('product');
+        var servicesEl = document.getElementById('services');
+
         if (galleryEl) {
           var galleryTop = galleryEl.offsetTop;
-          var galleryHeight = galleryEl.offsetHeight;
-          var galleryBottom = galleryTop + galleryHeight;
-
-          // Video background begins playing BEFORE the gallery finishes (e.g. at 55% through the gallery)
-          var videoResumeTrigger = galleryTop + (galleryHeight * 0.55);
           var heroInitialFrame = 28;
+          
+          // Calculate exact transition point where product starts leaving and services begins entering view
+          var productHeight = productEl ? productEl.offsetHeight : 0;
+          var productTop = productEl ? productEl.offsetTop : (galleryTop + galleryEl.offsetHeight);
+          
+          // Resume scrub as soon as the product section scrub track begins transitioning (at 85% through product track or viewport height before services)
+          var resumeScrubTop = productTop + Math.max(productHeight - window.innerHeight, productHeight * 0.85);
 
           if (scrollY <= 0) {
             targetFrame = 0;
           } else if (scrollY < galleryTop) {
             var ratioHero = scrollY / Math.max(galleryTop, 1);
             targetFrame = ratioHero * heroInitialFrame;
-          } else if (scrollY >= galleryTop && scrollY < videoResumeTrigger) {
-            // Holds initial frame during the first half of gallery overlap
+          } else if (scrollY >= galleryTop && scrollY < resumeScrubTop) {
+            // Keep background video paused/still during gallery cards and initial product video showcase
             targetFrame = heroInitialFrame;
           } else {
-            // Resumes video scrubbing smoothly before image gallery finishes
-            var activeScroll = scrollY - videoResumeTrigger;
-            var remainingScroll = Math.max(totalDocHeight - videoResumeTrigger, 1);
+            // Resumes video sequence motion immediately as product transitions to services
+            var activeScroll = scrollY - resumeScrubTop;
+            var remainingScroll = Math.max(totalDocHeight - resumeScrubTop, 1);
             var activeRatio = Math.min(Math.max(activeScroll / remainingScroll, 0), 1);
             targetFrame = heroInitialFrame + activeRatio * (totalFrames - 1 - heroInitialFrame);
           }
@@ -2754,16 +2653,38 @@
       updateScrollProgress();
       requestAnimationFrame(animationLoop);
 
-      /* -- Header scroll state ------------------------------------------- */
+      /* -- Header scroll state & Product Section Theme Switcher ---------- */
       var navbar = document.getElementById('navbar');
+      var productSectionEl = document.getElementById('product');
+      var servicesSectionEl = document.getElementById('services');
+
       function onScroll() {
         if (window.scrollY > 40) {
           navbar.classList.add('scrolled');
         } else {
           navbar.classList.remove('scrolled');
         }
+
+        // Detect if currently inside the product section (before services section)
+        if (productSectionEl) {
+          var prodRect = productSectionEl.getBoundingClientRect();
+          var servicesRect = servicesSectionEl ? servicesSectionEl.getBoundingClientRect() : null;
+
+          // Header is considered inside Product when product enters top half and before Services enters viewport top
+          var isOverProduct = prodRect.top <= 80 && prodRect.bottom > 80;
+          if (servicesRect && servicesRect.top <= 80) {
+            isOverProduct = false;
+          }
+
+          if (isOverProduct) {
+            navbar.classList.add('header-product-dark');
+          } else {
+            navbar.classList.remove('header-product-dark');
+          }
+        }
       }
       window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
       onScroll();
 
       /* -- Mobile navigation ------------------------------------------- */
@@ -3077,6 +2998,161 @@
         }
 
         render();
+      })();
+
+      /* -- Pure Scroll-Driven Product Video Timeline Engine (Cinematic 60fps Frame-Accurate Scrub) -- */
+      (function initProductVideoScroll() {
+        var productSec = document.getElementById('product');
+        var prodVideo = document.getElementById('productScrollVideo');
+        if (!productSec || !prodVideo) return;
+
+        prodVideo.muted = true;
+        prodVideo.playsInline = true;
+        prodVideo.preload = 'auto';
+        prodVideo.removeAttribute('autoplay');
+
+        var videoDuration = 10.0;
+        var targetProgress = 0;
+
+        function updateDuration() {
+          if (prodVideo.duration && !isNaN(prodVideo.duration) && prodVideo.duration > 0) {
+            videoDuration = prodVideo.duration;
+          }
+        }
+
+        ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'durationchange'].forEach(function(ev) {
+          prodVideo.addEventListener(ev, function() {
+            updateDuration();
+            updateProductScroll();
+          });
+        });
+        updateDuration();
+
+        var headlineOverlay = document.getElementById('productHeadlineOverlay');
+
+        function updateProductScroll() {
+          updateDuration();
+          var rect = productSec.getBoundingClientRect();
+          var scrollableHeight = productSec.offsetHeight - window.innerHeight;
+          if (scrollableHeight <= 0) return;
+
+          // Progress maps from 0 (starts pinned at top) to 1 (completes full track)
+          var progress = -rect.top / scrollableHeight;
+          targetProgress = Math.max(0, Math.min(1, progress));
+
+          // Headline push-out transition:
+          // Stationary & visible at 0.0s, then pushes smoothly upward & fades out as the first Wella bottle emerges (progress ~0.03 to 0.22)
+          if (headlineOverlay) {
+            if (targetProgress <= 0.02) {
+              headlineOverlay.style.transform = 'translateY(0%) scale(1)';
+              headlineOverlay.style.opacity = '1';
+              headlineOverlay.style.visibility = 'visible';
+            } else if (targetProgress > 0.02 && targetProgress < 0.22) {
+              var pushRatio = (targetProgress - 0.02) / 0.20;
+              var translateY = pushRatio * -120; // Pushes upwards out of the top frame
+              var opacity = 1 - (pushRatio * 1.15);
+              var scale = 1 - (pushRatio * 0.08);
+              headlineOverlay.style.transform = 'translateY(' + translateY + '%) scale(' + Math.max(scale, 0.8) + ')';
+              headlineOverlay.style.opacity = Math.max(0, opacity).toString();
+              headlineOverlay.style.visibility = 'visible';
+            } else {
+              headlineOverlay.style.transform = 'translateY(-120%) scale(0.9)';
+              headlineOverlay.style.opacity = '0';
+              headlineOverlay.style.visibility = 'hidden';
+            }
+          }
+        }
+
+        var isSeekingReverse = false;
+
+        function getNextReverseStep(cur, target) {
+          var gap = cur - target;
+          if (gap <= 0.012) return target;
+          // Dynamic adaptive stepping: fine-grained micro-steps for slow scroll, proportional progression for faster scroll
+          var step = Math.min(Math.max(gap * 0.35, 0.033), 0.14);
+          return Math.max(target, cur - step);
+        }
+
+        // Continuous Cinematic Frame Synchronizer (Forward & Reverse)
+        function syncVideoFrame() {
+          var rect = productSec.getBoundingClientRect();
+          var isInView = rect.bottom > 0 && rect.top < window.innerHeight;
+
+          if (!isInView) {
+            if (!prodVideo.paused) prodVideo.pause();
+            requestAnimationFrame(syncVideoFrame);
+            return;
+          }
+
+          var dur = videoDuration > 0 ? videoDuration : 10.0;
+          var targetTime = Math.max(0, Math.min(dur - 0.02, targetProgress * dur));
+          var curTime = prodVideo.currentTime || 0;
+          var timeDiff = targetTime - curTime;
+
+          if (timeDiff > 0.035) {
+            // Forward scrubbing: hardware playback tracking (kept completely intact)
+            isSeekingReverse = false;
+            if (timeDiff > 2.5) {
+              prodVideo.currentTime = targetTime - 0.3; // Catch up if large jump
+            }
+            var speed = Math.min(Math.max(timeDiff * 4.0, 0.5), 4.5);
+            try {
+              prodVideo.playbackRate = speed;
+              if (prodVideo.paused) {
+                var playPromise = prodVideo.play();
+                if (playPromise !== undefined) {
+                  playPromise.catch(function () {});
+                }
+              }
+            } catch (err) {}
+          } else if (timeDiff < -0.012) {
+            // Reverse scrubbing: smooth continuous frame-by-frame seeking capturing every millisecond
+            if (!prodVideo.paused) {
+              try { prodVideo.pause(); } catch (e) {}
+            }
+
+            if (!isSeekingReverse) {
+              isSeekingReverse = true;
+              var nextReverseTime = getNextReverseStep(curTime, targetTime);
+              try {
+                prodVideo.currentTime = nextReverseTime;
+              } catch (err) {
+                isSeekingReverse = false;
+              }
+            }
+          } else {
+            // Settled at exact frame
+            isSeekingReverse = false;
+            if (!prodVideo.paused) {
+              try { prodVideo.pause(); } catch (e) {}
+            }
+          }
+
+          requestAnimationFrame(syncVideoFrame);
+        }
+
+        prodVideo.addEventListener('seeked', function () {
+          isSeekingReverse = false;
+          var dur = videoDuration > 0 ? videoDuration : 10.0;
+          var targetTime = Math.max(0, Math.min(dur - 0.02, targetProgress * dur));
+          var curTime = prodVideo.currentTime || 0;
+          // Immediately chain next frame in reverse if user is continuing to scroll up
+          if (curTime - targetTime > 0.012) {
+            isSeekingReverse = true;
+            var nextReverseTime = getNextReverseStep(curTime, targetTime);
+            try {
+              prodVideo.currentTime = nextReverseTime;
+            } catch (e) {
+              isSeekingReverse = false;
+            }
+          }
+        });
+
+        window.addEventListener('scroll', updateProductScroll, { passive: true });
+        window.addEventListener('resize', updateProductScroll, { passive: true });
+
+        updateProductScroll();
+        requestAnimationFrame(syncVideoFrame);
       })();
 
       /* -- Footer year ------------------------------------------------- */
