@@ -1,0 +1,6 @@
+{
+  "name": "Salon One",
+  "description": "Hairdressing, beauty therapy, and bridal styling in Fraser Cove, Tauranga",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
