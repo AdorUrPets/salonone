@@ -9,8 +9,16 @@ const app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
+// Dev server: always serve fresh content, never let the browser cache it
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  next();
+});
+
 // Serve static files from root directory
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, { etag: false, lastModified: false }));
 
 // Fallback to index.html for all other routes
 app.get('*', (req, res) => {
